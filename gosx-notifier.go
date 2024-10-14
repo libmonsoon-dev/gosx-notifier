@@ -55,6 +55,7 @@ func (n *Notification) Push() error {
 	return cmd.Run()
 }
 
+// BuildCommand works like Push, but instead of running *exec.Cmd it just returns it.
 func (n *Notification) BuildCommand() (*exec.Cmd, error) {
 	err := check()
 	if err != nil {
