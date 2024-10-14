@@ -57,7 +57,6 @@ func (n *Notification) Push() error {
 }
 
 // BuildCommand works like Push, but instead of running *exec.Cmd it just returns it.
-// context.Context argument may be nil
 func (n *Notification) BuildCommand(ctx context.Context) (*exec.Cmd, error) {
 	err := check()
 	if err != nil {
@@ -136,10 +135,7 @@ func (n *Notification) BuildCommand(ctx context.Context) (*exec.Cmd, error) {
 		return nil, errors.New("please provide a Message and Type at a minimum")
 	}
 
-	if ctx != nil {
-		return exec.CommandContext(ctx, binPath, commandTuples...), nil
-	}
-	return exec.Command(binPath, commandTuples...), nil
+	return exec.CommandContext(ctx, binPath, commandTuples...), nil
 }
 
 func normalizeImagePath(image string) (string, error) {
