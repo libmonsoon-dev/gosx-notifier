@@ -48,7 +48,7 @@ func NewNotification(message string) *Notification {
 }
 
 func (n *Notification) Push() error {
-	cmd, err := n.BuildCommand(nil)
+	cmd, err := n.BuildCommand(context.Background())
 	if err != nil {
 		return err
 	}
