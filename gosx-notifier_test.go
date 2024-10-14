@@ -1,20 +1,9 @@
 package gosxnotifier
 
 import (
-	"log"
 	"path/filepath"
 	"testing"
 )
-
-func Test_Install(t *testing.T) {
-	//assert file exists
-
-	if !exists(FinalPath) {
-		t.Error("Test_Install failed to install the terminal-notifier.app bundle")
-	} else {
-		log.Println("terminal-notifier.app bundle installed successfully at: ", FinalPath)
-	}
-}
 
 func Test_NewNotifier(t *testing.T) {
 	n := NewNotification("Hello")

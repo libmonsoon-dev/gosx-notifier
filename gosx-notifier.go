@@ -56,8 +56,9 @@ func (n *Notification) Push() error {
 }
 
 func (n *Notification) BuildCommand() (*exec.Cmd, error) {
-	if !supportedOS() {
-		return nil, fmt.Errorf("not supported")
+	err := check()
+	if err != nil {
+		return nil, err
 	}
 
 	commandTuples := make([]string, 0)
@@ -132,7 +133,7 @@ func (n *Notification) BuildCommand() (*exec.Cmd, error) {
 		return nil, errors.New("please provide a Message and Type at a minimum")
 	}
 
-	return exec.Command(FinalPath, commandTuples...), nil
+	return exec.Command(binPath, commandTuples...), nil
 }
 
 func normalizeImagePath(image string) (string, error) {
